@@ -31,6 +31,7 @@ O Three.js r160 não tem mais build UMD; use o importmap e `<script type="module
 - Posicione o objeto **depois de `document.fonts.ready`** e chame `ScrollTrigger.refresh()`. A troca de fonte muda a altura do layout.
 - Título revelado com máscara (`overflow: hidden`): use `padding: .14em 0 .16em` com margem negativa igual, senão acentos e descendentes ficam cortados.
 - Imagem que acompanha o cursor: esconda também no `mouseleave` da lista e na rolagem. Sem isso, ela fica presa na tela.
+- **Tudo que depende de hover precisa de um equivalente no toque.** No celular a garrafa que segue o cursor nunca aparecia (a Gabriela tocava nos produtores e nada acontecia). Com `(hover: none)`, cada item abre a imagem embaixo do nome (`grid-template-rows: 0fr → 1fr`, imagem `loading="lazy"` dentro do bloco escondido, `role=button`, `aria-expanded`, Enter/Espaço), com um "+" que gira; abrir um fecha o anterior.
 - `history.scrollRestoration = "manual"` evita abrir no meio da seção fixada.
 - Cabeçalho fixo transparente se sobrepõe ao texto. Use um gradiente da cor de fundo para transparente.
 - A trilha de etapas no celular vira 5 barras finas no topo. O texto fica embaixo, sobre um véu em gradiente (`--veu`).

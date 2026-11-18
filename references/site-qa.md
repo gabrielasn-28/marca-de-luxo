@@ -28,6 +28,7 @@ Não force `progress(1)` em todos os scrub tweens de uma vez: o da abertura rees
 - [ ] Portfólio: o produto cabe inteiro na altura da tela; percurso horizontal ≤ 3,5 telas; contador chega a "10 / 10" com o último cartão inteiro na tela; setas, teclado e gesto lateral andam um cartão.
 - [ ] Modo sem animação: o portfólio rola de lado sozinho (simule com `ScrollTrigger.getAll().forEach(s => s.kill(true))` e remova `.fixa`).
 - [ ] Celular: em cada etapa, o objeto 3D não cobre rótulo nem foto (compare retângulos).
+- [ ] Celular: todo efeito de hover tem versão de toque (toque no item e confira que algo aparece).
 - [ ] Tema dia e tema noite em todas as seções.
 - [ ] Console sem erros (`read_console_messages` com `onlyErrors`).
 - [ ] Nenhuma foto de pessoa sem autorização, nenhum dado inventado.
