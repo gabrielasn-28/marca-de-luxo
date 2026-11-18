@@ -42,6 +42,7 @@ O que costuma funcionar por setor:
 - **Alimentos e cosméticos**: a origem no mapa, a matéria-prima em macro, a textura (gota, grão, pó).
 
 ## Referências de estrutura que a Gabriela trouxe (gosto, não nível)
+Os 14 prints estão em `assets/exemplo-ganesh/referencias/`, com a tabela do que se aproveitou e do que ficou de fora de cada um.
 - **Fontana**: palco de luz, garrafas escuras, botões só com contorno dourado.
 - **BeerStrasse e 56° North**: linha de garrafas com nome e teor; fotos redondas da colheita.
 - **Scotch Me**: faixa com as marcas parceiras.

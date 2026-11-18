@@ -7,6 +7,7 @@ O pacote real que originou a skill. É a **régua de qualidade**: qualquer proje
 | `dossie.md` | Pesquisa da empresa | Fatos com fonte; a história que virou conceito; a lista "a confirmar" |
 | `briefing.md` | Respostas da cliente | Como cada resposta mudou o projeto |
 | `conceito.md` | "A viagem do seu vinho" | Etapas, objeto herói, cenário, e como aparecem nas 3 peças |
+| `referencias/` | Os 14 prints de referência que a cliente mandou | O que se aproveitou e o que se ignorou de cada um: gosto, não nível |
 | `marca/` | Símbolo redesenhado em vetor | Três versões: dourada, branca, escura |
 | `site/index.html` + `img/` | Site final (publicado em ganesh-vinhos-site.vercel.app) | Abertura com garrafa 3D, viagem fixada no mapa, portfólio horizontal com contador e setas, lista de produtores com imagem no cursor, contato clicável, tema dia/noite, modos sem 3D e sem GSAP |
 | `apresentacao/` | Deck de 12 slides para produtores (PT; também houve ES e IT) | Ritmo noite/dia/dourado, o slide da viagem como momento principal |

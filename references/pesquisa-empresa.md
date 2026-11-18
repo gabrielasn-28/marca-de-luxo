@@ -15,7 +15,7 @@ Faça a pesquisa **antes** de perguntar: as perguntas ficam poucas e certeiras, 
 | Conversas, áudios transcritos, e-mails | Leia tudo | Como a empresa fala de si, o que o dono valoriza, pedidos e restrições |
 | Apresentação antiga | Leia | Números que a empresa já usa, argumentos de venda |
 
-Guarde o material em `fontes/` e não altere os originais.
+Guarde o material em `fontes/` e não altere os originais. Referências visuais que a pessoa mandar (prints, links) vão para `fontes/referencias/` com nomes legíveis (`03-fontana-vinhos.jpg`, não o nome numérico do download), cada uma com uma linha do que aproveitar e do que ignorar. Exemplo: `assets/exemplo-ganesh/referencias/README.md`.
 
 ## 2. Pesquisar fora
 

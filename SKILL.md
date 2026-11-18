@@ -119,6 +119,6 @@ O filme tem a mesma estrutura do site, em tempo: abertura com o objeto herói �
 
 ## Exemplos e testes
 
-- `assets/exemplo-ganesh/`: o pacote real (dossiê, briefing, conceito, site com imagens, apresentação, SPEC e cenas do vídeo). É a régua.
+- `assets/exemplo-ganesh/`: o pacote real (dossiê, briefing, conceito, os 14 prints de referência que a cliente mandou com o que se aproveitou de cada um, site com imagens, apresentação, SPEC e cenas do vídeo). É a régua.
 - `assets/teste-joalheria/`: um briefing de outro setor e o resultado esperado, para provar que a skill não depende de vinho. Use-o para avaliar a skill depois de qualquer mudança grande.
 - `evals/`: casos de teste no formato do `claude plugin eval`.
