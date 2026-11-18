@@ -20,4 +20,4 @@ O pacote real que originou a skill. É a **régua de qualidade**: qualquer proje
 ## Limites conhecidos (não copie sem pensar)
 - A foto do estande do Covabra mostra a promotora; o consentimento ainda precisava ser confirmado.
 - A `og:image` não foi definida porque o domínio final não existia.
-- O filme saiu sem trilha (catálogo de música exigia login na HeyGen).
+- A trilha "A Good Dream" (Jesse Keller, CC BY 3.0) exige crédito onde o filme for publicado: texto em `video/CREDITS.md`. Os áudios e o MP4 final ficam no projeto da Ganesh (`GANESH/video/`), não neste exemplo.

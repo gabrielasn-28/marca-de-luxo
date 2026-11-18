@@ -25,7 +25,7 @@ Exemplo real: `assets/exemplo-ganesh/video/` (SPEC, `index.html`, 5 cenas em `co
 - **Um só movimento contínuo** (o balanço do objeto); todo o resto anda e para. Texto que pousou fica parado.
 - **Texto de cinema**: entrada por palavra com desfoque de 6px → 0 e opacidade, 0,08 s entre palavras, sem subir. Cada linha fica na tela 0,5 s + 0,3 s por palavra no mínimo.
 - **Luz com direção**: luz principal quente de cima à direita, contraluz da cor da marca atrás. Sombra de contato sob o objeto. Sem vinheta além do palco de luz e sem grão.
-- **Som**: filme com mais de 15 s que conta uma história leva trilha e som nas ações visíveis (a rolha, o líquido, o vento no mapa). Leia `hyperframes/references/sound.md`. Sem trilha disponível, entregue sem som e avise.
+- **Som**: filme com mais de 15 s que conta uma história leva trilha e som nas ações visíveis (a rolha, o líquido, o vento no mapa). Leia `hyperframes/references/sound.md`. Sem login na HeyGen, use música livre do Openverse (CC0 ou CC BY): veja "Trilha e mistura de áudio" abaixo. Só entregue sem som se nada servir, e avise.
 - **Proibido**: partículas flutuando, brilho de lente, cartões de vidro, três cards em fila, rótulos 01/02, logo parada num canto, rótulo inventado no produto, rosto de cliente sem autorização.
 
 ## Fluxo
@@ -58,7 +58,7 @@ Exemplo real: `assets/exemplo-ganesh/video/` (SPEC, `index.html`, 5 cenas em `co
   - `text_occluded`: rótulos sob o véu do texto; reenquadre.
   - `duplicate_media_discovery_risk`: duas `<img>` com o mesmo arquivo; use uma cópia com outro nome.
 - **Transições que funcionaram**: o elefante da garrafa cresce até virar o fundo dourado (o objeto vira o mundo); zoom pelo ponto de destino no mapa; a silhueta da logo se abre sobre a foto real; chicote lateral com desfoque casando a velocidade; o vinho transborda e cobre a tela, depois escoa revelando a assinatura.
-- **Música**: o catálogo grátis exige login na HeyGen (`auth login`). Sem login, o filme saiu sem som e isso foi dito na entrega.
+- **Música**: o catálogo grátis da HeyGen exige o programa `heygen`, que não tem versão para Windows (só WSL). A primeira versão saiu sem som; a final usa trilha do Openverse (seção abaixo).
 - **Versões em outros idiomas**: só os textos mudam; use as traduções de `apresentacao.md`.
 
 ## Locução sincronizada (método testado no filme da Ganesh)
@@ -66,6 +66,19 @@ Exemplo real: `assets/exemplo-ganesh/video/` (SPEC, `index.html`, 5 cenas em `co
 - **Uma fala por momento do filme, cada uma gerada como arquivo separado.** Uma locução corrida com pausas acumula erro de ritmo e dessincroniza. Cada fala tem: segundo de início (2 a 3 quadros antes da palavra-chave aparecer na tela), tempo-limite (a próxima transição), texto e direção de voz. Para cada uma, deixe também um texto curto de reserva.
 - Ritmo de cálculo em português: cerca de 2,4 palavras por segundo com speed 0.92.
 - ElevenLabs: modelo Multilingual v2 (o v3 ignora `<break time="0.3s" />`), stability 55%, similarity 80%, style 20%. Escreva nomes estrangeiros como se pronunciam (`Champanhe`, `Bordô`).
-- No HyperFrames, cada fala vira um `<audio>` com `data-start`. Meça cada arquivo com `npx hyperframes audio <arquivo> --json` antes do render. Música a cerca de 0.14 sob a voz e cheia nos intervalos sem fala.
+- No HyperFrames, cada fala vira um `<audio>` com `data-start`. Meça cada arquivo com `npx hyperframes audio <arquivo> --json` antes do render. A música abaixa sob a voz e fica cheia nos respiros (valores medidos na seção "Trilha e mistura de áudio").
 - Modelo completo: `GANESH/video/LOCUCAO.md` (copie para `assets/exemplo-ganesh/video/` ao atualizar o exemplo).
 - **Se a pessoa gerar a locução numa peça só** (comum: o modelo v3 ignora as pausas e o áudio fica curto), não tente acertar pausas. Rode `ffmpeg -af silencedetect=noise=-38dB:d=0.25`, case os trechos de voz com as falas do roteiro, corte cada fala com 0,05 s de folga e fades curtos, e ponha cada uma como `<audio>` no segundo da sua transição. Alterne faixas (`data-track-index` 2 e 3) quando as caudas se sobrepõem. Para provar, misture as falas com `adelay` e meça os inícios com `silencedetect`.
+
+## Trilha e mistura de áudio (lições de 18/11/2026)
+- **Voz sumida ou efeitos mais altos que ela**: meça com `ffmpeg -af loudnorm=print_format=json` antes de renderizar. No filme da Ganesh a voz chegou em −31 LUFS e os efeitos ficaram até 18 dB acima dela. Tratamento que resolveu: corte de graves em 75 Hz, compressão leve 2,5:1, **um único ganho para todas as falas** (preserva o equilíbrio entre elas), limitador a −1,5 dBFS. Meta da locução: −16 LUFS; filme final entre −16 e −14 LUFS, pico até −1 dBTP. Guarde os originais e ponha os tratados numa pasta `voz/tratada/`.
+- **Efeitos**: 8 a 15 dB abaixo da voz durante a fala, sozinhos nos respiros. Efeito com pico alto e corpo fraco (líquido servindo) ganha uma cópia nivelada.
+- **Silêncios**: renderize e rode `silencedetect`. Meta: nenhum silêncio acima de 0,4 s num filme narrado. Respiro inevitável se cobre com efeito sonoro (mar, sopro de câmera), entrando um pouco antes da imagem.
+- **Falas de ligação**: se a voz deixa buracos de 1,5 a 3 s entre as falas, escreva falas curtas extras para preenchê-los e regenere a locução inteira com a mesma voz.
+- **Voz indisponível**: a voz de biblioteca pode sumir da conta. Regenere tudo com outra voz (Multilingual v2, speed 1.0) em vez de misturar vozes.
+- **Música livre sem login**: procure no Openverse (`api.openverse.org`) licenças **CC0 ou CC BY**. Não use CC BY-NC nem ND. Salve o original, a edição e um `CREDITS.md`. **CC BY exige o crédito em todo lugar onde o filme for publicado**; avise a pessoa na entrega.
+- **Edição da trilha para a duração do filme**: use a introdução suave nos primeiros segundos, emende a 0,3 s escondida sob um efeito ou a voz, e posicione o clímax da música no clímax visual. Fade-out nos últimos 1,5 a 2 s.
+- **Ducking manual** no `data-automation` do `<audio>` da trilha: volume cheio nos respiros, cerca de 0.28 sob a voz e 0.21 sob o clímax; confira que a música fica ~13 dB abaixo da voz. Não ligue o carve automático junto: as curvas se somam.
+- **Render**: use sempre `--no-best-effort`. Um render com aviso `media_readiness_timeout` perdeu o desfoque de movimento em 1 de cada 4 quadros. Compare com o render bom anterior por SSIM e confira o áudio final com `loudnorm` e `silencedetect`.
+- **Pronúncia**: pergunte e escreva o nome da marca como se fala (Ganesh → `Ganésh`, tônica em "nésh").
+- **Sem Python 64 bits não há MusicGen local**: não prometa música gerada; use banco livre.

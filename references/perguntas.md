@@ -25,7 +25,7 @@ Registre as respostas no `briefing.md` (modelo em `assets/modelos/briefing.md`).
 - **Uso**: site e YouTube, apresentação para parceiros, feira, redes sociais.
 - **Duração**: 30, 45 ou 60 s (padrão: 45 s, 16:9, 1920×1080, 30 fps).
 - **Roteiro**: apresente 3 roteiros em palavras e peça para escolher um.
-- **Som**: trilha do catálogo HeyGen (exige login dela), trilha própria ou sem música. Voz em off: sim ou não.
+- **Som**: trilha livre do Openverse (CC0 ou CC BY, com crédito) ou do catálogo HeyGen (só se ela tiver o programa `heygen`), trilha própria ou sem música. Voz em off: sim ou não.
 - **Versões**: idiomas da legenda e do texto na tela.
 
 ## Perguntas de ajuste (depois de ver a primeira versão)

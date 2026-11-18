@@ -7,7 +7,7 @@ description: Cria o pacote completo de uma marca premium — pesquisa da empresa
 
 Esta skill transforma o material de uma empresa (logo, site antigo, catálogo, fotos, conversas) num pacote coerente: **dossiê da empresa → conceito → identidade → site → apresentação → filme**. Todas as peças contam a mesma história com os mesmos tokens visuais.
 
-Nasceu do projeto Ganesh Vinhos (importadora de vinhos de São Paulo). O pacote completo e testado está em `assets/exemplo-ganesh/` e é o **parâmetro de qualidade**: nada sai abaixo dele. Versão 1.0.
+Nasceu do projeto Ganesh Vinhos (importadora de vinhos de São Paulo). O pacote completo e testado está em `assets/exemplo-ganesh/` e é o **parâmetro de qualidade**: nada sai abaixo dele. Versão 1.1 (18/11/2026: áudio, trilha e render do filme).
 
 ## Por que existe
 

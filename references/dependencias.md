@@ -47,7 +47,8 @@ Depois de instalar, reinicie a sessão. `--forcar` reinstala todas a partir do p
 | Git | 5 | Repositório próprio na pasta `site/`. Commit e push só quando a pessoa pedir; cada publicação precisa de uma autorização nova. |
 | Vercel | 8 | `vercel.json` de site estático (exemplo em `assets/exemplo-ganesh/site/`). |
 | Node.js 22+ e FFmpeg/FFprobe | 7 | Windows: `winget install OpenJS.NodeJS.LTS` e `winget install Gyan.FFmpeg`, **sempre com autorização**. Depois `npx hyperframes doctor --json`. |
-| Conta HeyGen (opcional) | 7 | Catálogo de música grátis e voz. Sem login, o filme sai sem trilha e a pessoa é avisada. |
+| Conta HeyGen (opcional) | 7 | Catálogo de música grátis e voz. Exige o programa `heygen`, que não tem versão para Windows (só WSL). No Windows, use o Openverse (CC0 ou CC BY, com crédito) para a trilha. |
+| Conta ElevenLabs (opcional) | 7 | Locução. Modelo Multilingual v2; confirme que a voz escolhida continua na conta. |
 
 ## Pilha do site (versões fixas e testadas)
 
