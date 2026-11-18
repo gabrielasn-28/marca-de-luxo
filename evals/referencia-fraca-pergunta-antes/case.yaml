@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: referencia-fraca-pergunta-antes
+expected_outcome: |
+  Antes de construir, a execução pesquisa ou declara o que sabe da empresa e do
+  setor, faz a rodada 1 de perguntas da skill (no máximo 4, com opções e uma
+  recomendada: foco, público, primeira entrega, logo) e diz em uma linha o que
+  aproveita da referência sem adotar o slider nem os ícones em 3 colunas.
+  Não entrega um site pronto nessa primeira resposta.

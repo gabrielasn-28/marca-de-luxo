@@ -1,0 +1,55 @@
+<template>
+  <style>
+    @font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;font-display:block;src:url('assets/fonts/BodoniModa.woff2') format('woff2')}
+    @font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;font-display:block;src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2')}
+    @font-face{font-family:'Jost';font-style:normal;font-weight:100 900;font-display:block;src:url('assets/fonts/Jost.woff2') format('woff2')}
+    #root { position: absolute; inset: 0; overflow: hidden; background: #120F0C; }
+    #ab-luz { position: absolute; inset: 0; background: radial-gradient(ellipse 30% 56% at 50% 48%, #3A3020 0%, rgba(18,15,12,0) 100%); }
+    #ab-cena { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .ab-tit { position: absolute; top: 340px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: 108px; line-height: 1.08; letter-spacing: -0.01em; color: #F1EBE0; }
+    #ab-esq { right: 1190px; width: 640px; text-align: right; }
+    #ab-dir, #ab-brilho { left: 1190px; width: 660px; font-style: italic; color: #D6C190; }
+    .ab-tit span { display: inline-block; }
+    #ab-brilho { color: transparent; background: linear-gradient(100deg, rgba(255,243,214,0) 40%, rgba(255,246,224,0.95) 50%, rgba(255,243,214,0) 60%); background-size: 300% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; }
+    #ab-selo { position: absolute; left: 829px; top: 380px; width: 262px; height: 319px; opacity: 0; }
+    #ab-ouro { position: absolute; inset: 0; background: #8F7749; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="abertura" data-width="1920" data-height="1080">
+    <div id="ab-luz"></div>
+    <canvas id="ab-cena" width="1920" height="1080"></canvas>
+    <h1 id="ab-esq" class="ab-tit"><span>Do</span><br><span>vinhedo</span></h1>
+    <h1 id="ab-dir" class="ab-tit"><span>à</span> <span>mesa</span><br><span>brasileira.</span></h1>
+    <h1 id="ab-brilho" class="ab-tit" aria-hidden="true" data-layout-allow-overlap>à mesa<br>brasileira.</h1>
+    <img id="ab-selo" src="assets/img/ganesh-simbolo-dourado.svg" alt="" data-layout-ignore>
+    <div id="ab-ouro"></div>
+  </div>
+  <script>
+    (function () {
+      const g = window.GaneshGarrafa(document.getElementById('ab-cena'));
+      // plano macro: ombro e cápsula dourada, a garrafa girando sob a luz
+      const S = { x: 0.9, y: -4.5, rz: 0.08, giro: -2.6, s: 2.7, op: 1, luz: -7 };
+      const tl = gsap.timeline({ paused: true, onUpdate: () => g.render(S) });
+      // giro desacelerando: o reflexo corre pelo vidro
+      tl.fromTo(S, { giro: -2.6 }, { giro: 0, duration: 3.3, ease: 'power3.out' }, 0);
+      tl.fromTo(S, { luz: -7 }, { luz: 4, duration: 2.6, ease: 'power2.inOut' }, 0);
+      // a câmera recua do macro até a garrafa inteira
+      tl.to(S, { s: 1, y: 0, x: 0, rz: 0, duration: 1.7, ease: 'power3.inOut' }, 1.3);
+      // título palavra por palavra; o brilho de folha de ouro corre na frase dourada
+      tl.fromTo('#ab-esq span', { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.14, stagger: 0.08, ease: 'power2.out' }, 2.35);
+      tl.fromTo('#ab-dir span', { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.14, stagger: 0.08, ease: 'power2.out' }, 2.7);
+      tl.fromTo('#ab-brilho', { backgroundPosition: '100% 0' }, { backgroundPosition: '0% 0', duration: 1.1, ease: 'power2.inOut' }, 3.3);
+      tl.to('#ab-esq span, #ab-dir span', { opacity: 0, filter: 'blur(8px)', duration: 0.18, stagger: 0.025, ease: 'power2.in' }, 4.65);
+      // a câmera mergulha no elefante dourado
+      tl.to(S, { s: 2.4, y: 1.49, duration: 0.7, ease: 'power2.in' }, 4.75);
+      tl.fromTo('#ab-selo', { opacity: 0 }, { opacity: 1, duration: 0.06, ease: 'none' }, 5.42);
+      tl.to(S, { op: 0, duration: 0.12, ease: 'none' }, 5.5);
+      tl.fromTo('#ab-selo', { scale: 1 }, { scale: 32, duration: 0.62, ease: 'power3.in' }, 5.45);
+      tl.fromTo('#ab-ouro', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'none' }, 5.88);
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady['abertura'] = g.pronto;
+      g.render(S);
+      window.__timelines = window.__timelines || {};
+      window.__timelines['abertura'] = tl;
+    })();
+  </script>
+</template>

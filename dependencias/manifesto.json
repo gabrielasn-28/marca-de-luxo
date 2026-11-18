@@ -1,0 +1,81 @@
+{
+ "gerado": "2026-11-18",
+ "skills": [
+  {
+   "skill": "barba-js",
+   "arquivos": 6
+  },
+  {
+   "skill": "frontend-design",
+   "arquivos": 2
+  },
+  {
+   "skill": "gsap-core",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-frameworks",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-performance",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-plugins",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-react",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-scrolltrigger",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-timeline",
+   "arquivos": 1
+  },
+  {
+   "skill": "gsap-utils",
+   "arquivos": 1
+  },
+  {
+   "skill": "hyperframes",
+   "arquivos": 81
+  },
+  {
+   "skill": "hyperframes-cli",
+   "arquivos": 13
+  },
+  {
+   "skill": "hyperframes-registry",
+   "arquivos": 13
+  },
+  {
+   "skill": "lightweight-3d-effects",
+   "arquivos": 9
+  },
+  {
+   "skill": "locomotive-scroll",
+   "arquivos": 8
+  },
+  {
+   "skill": "media-use",
+   "arquivos": 130
+  },
+  {
+   "skill": "reverse-any-video",
+   "arquivos": 5
+  },
+  {
+   "skill": "style-sampling",
+   "arquivos": 2
+  },
+  {
+   "skill": "threejs-webgl",
+   "arquivos": 7
+  }
+ ]
+}

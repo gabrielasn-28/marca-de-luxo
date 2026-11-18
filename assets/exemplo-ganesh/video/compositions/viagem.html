@@ -1,0 +1,161 @@
+<template>
+  <style>
+    @font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;font-display:block;src:url('assets/fonts/BodoniModa.woff2') format('woff2')}
+    @font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;font-display:block;src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2')}
+    @font-face{font-family:'Jost';font-style:normal;font-weight:100 900;font-display:block;src:url('assets/fonts/Jost.woff2') format('woff2')}
+    #root { position: absolute; inset: 0; overflow: hidden; background: #120F0C; }
+    #vg-cam { position: absolute; left: 0; top: 0; width: 1400px; height: 1070px; transform-origin: 0 0; }
+    #vg-mundo { position: absolute; left: 0; top: 0; width: 1400px; height: 1070px; }
+    #vg-brasil { position: absolute; left: 420px; top: 760px; width: 260px; height: 200px; opacity: 0;
+      -webkit-mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%);
+      mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%); }
+    #vg-svg { position: absolute; left: 0; top: 0; width: 1400px; height: 1070px; overflow: visible; }
+    .vg-rota { fill: none; stroke: #D6C190; stroke-width: 1.2; stroke-linecap: round; stroke-opacity: 0.75; }
+    #vg-trilha { fill: none; stroke: #FFF3D6; stroke-width: 1.8; stroke-linecap: round; }
+    .vg-pt { fill: #D6C190; }
+    .vg-nome { font-family: 'Jost', Arial, sans-serif; font-size: 10.5px; fill: #F1EBE0; letter-spacing: 0.04em; }
+    .vg-porto { font-family: 'Jost', Arial, sans-serif; font-size: 6px; fill: #F1EBE0; }
+    #vg-veu { position: absolute; left: 0; top: 0; width: 980px; height: 1080px; background: linear-gradient(90deg, rgba(18,15,12,0.92) 0%, rgba(18,15,12,0.7) 55%, rgba(18,15,12,0) 100%); }
+    .vg-txt { position: absolute; left: 120px; bottom: 150px; width: 820px; color: #F1EBE0; }
+    .vg-txt h2 { font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: 84px; line-height: 1.08; letter-spacing: -0.01em; }
+    .vg-txt h2 span { display: inline-block; }
+    .vg-txt p { margin-top: 26px; font-family: 'Jost', Arial, sans-serif; font-weight: 300; font-size: 34px; line-height: 1.4; color: #CBBFAA; }
+    .vg-txt .n { display: block; margin-bottom: 18px; font-family: 'Bodoni Moda', Georgia, serif; font-style: italic; font-size: 34px; color: #D6C190; }
+    .vg-regiao { position: absolute; left: 790px; top: 640px; width: 800px; text-align: center; font-family: 'Bodoni Moda', Georgia, serif; font-style: italic; font-weight: 400; font-size: 132px; line-height: 1; color: #F1EBE0; opacity: 0; }
+    #vg-ouro { position: absolute; inset: 0; background: #8F7749; }
+    #vg-fim { position: absolute; inset: 0; background: #120F0C; opacity: 0; }
+    #vg-elef { position: absolute; left: 640px; top: 150px; width: 640px; height: 779px; background: #8F7749; opacity: 0;
+      -webkit-mask: url(assets/img/ganesh-simbolo-branco.svg) center / contain no-repeat;
+      mask: url(assets/img/ganesh-simbolo-branco.svg) center / contain no-repeat; }
+  </style>
+  <div id="root" data-composition-id="viagem" data-width="1920" data-height="1080">
+    <div id="vg-cam" data-layout-allow-overflow>
+      <img id="vg-mundo" src="assets/img/mapa-mundo.webp" alt="">
+      <img id="vg-brasil" src="assets/img/mapa-brasil.webp" alt="">
+      <svg id="vg-svg" viewBox="0 0 1400 1070">
+        <g id="vg-rotas">
+          <path class="vg-rota" d="M1040,130 Q760,430 537,860"/><path class="vg-rota" d="M1048,148 Q790,450 537,860"/>
+          <path class="vg-rota" d="M994,172 Q740,470 537,860"/><path class="vg-rota" d="M924,208 Q700,500 537,860"/>
+          <path class="vg-rota" d="M975,196 Q720,490 537,860"/><path class="vg-rota" d="M1113,187 Q820,480 537,860"/>
+          <path class="vg-rota" d="M1080,173 Q800,470 537,860"/><path class="vg-rota" d="M1176,191 Q860,520 537,860"/>
+          <path class="vg-rota" d="M312,949 Q430,860 537,860"/><path class="vg-rota" d="M284,975 Q420,900 537,860"/>
+        </g>
+        <path id="vg-trilha" d="M1040,130 Q760,430 537,860"/>
+        <g id="vg-pontos">
+          <circle class="vg-pt" cx="1040" cy="130" r="2.4"/><circle class="vg-pt" cx="1048" cy="148" r="2.4"/>
+          <circle class="vg-pt" cx="994" cy="172" r="2.4"/><circle class="vg-pt" cx="924" cy="208" r="2.4"/>
+          <circle class="vg-pt" cx="975" cy="196" r="2.4"/><circle class="vg-pt" cx="1113" cy="187" r="2.4"/>
+          <circle class="vg-pt" cx="1080" cy="173" r="2.4"/><circle class="vg-pt" cx="1176" cy="191" r="2.4"/>
+          <circle class="vg-pt" cx="312" cy="949" r="2.4"/><circle class="vg-pt" cx="284" cy="975" r="2.4"/>
+        </g>
+        <g id="vg-nomes" opacity="0">
+          <text class="vg-nome" x="1047" y="124">Champagne</text>
+          <text class="vg-nome" x="1055" y="153">Borgonha</text>
+          <text class="vg-nome" x="940" y="168">Bordeaux</text>
+          <text class="vg-nome" x="896" y="223">Douro</text>
+          <text class="vg-nome" x="958" y="211">Rioja</text>
+          <text class="vg-nome" x="1098" y="204">Toscana</text>
+          <text class="vg-nome" x="1068" y="185">Piemonte</text>
+          <text class="vg-nome" x="1183" y="196">Dalmácia</text>
+        </g>
+        <circle id="vg-navio" cx="1040" cy="130" r="3" fill="#FFF3D6" opacity="0"/>
+        <circle id="vg-anel" cx="526" cy="846" r="2" fill="none" stroke="#D6C190" stroke-width="0.5" opacity="0"/>
+        <g id="vg-portos">
+          <g class="vg-p"><circle class="vg-pt" cx="537" cy="860" r="1.3"/><circle cx="537" cy="860" r="3.6" fill="none" stroke="#D6C190" stroke-width="0.6"/><text class="vg-porto" x="543" y="866">Santos</text></g>
+          <g class="vg-p"><circle class="vg-pt" cx="513" cy="889" r="1.3"/><circle cx="513" cy="889" r="3.6" fill="none" stroke="#D6C190" stroke-width="0.6"/><text class="vg-porto" x="519" y="895">Itajaí</text></g>
+          <g class="vg-p"><circle class="vg-pt" cx="514" cy="881" r="1"/><text class="vg-porto" x="508" y="879" text-anchor="end">S. Francisco do Sul</text></g>
+          <g class="vg-p"><circle class="vg-pt" cx="597" cy="823" r="1.3"/><circle cx="597" cy="823" r="3.6" fill="none" stroke="#D6C190" stroke-width="0.6"/><text class="vg-porto" x="603" y="826">Vitória</text></g>
+          <g class="vg-p"><circle class="vg-pt" cx="526" cy="846" r="1.2"/><text class="vg-porto" x="520" y="843" text-anchor="end">Covabra, Limeira</text></g>
+        </g>
+      </svg>
+    </div>
+    <div id="vg-veu"></div>
+    <p id="vg-r1" class="vg-regiao">Champagne</p>
+    <p id="vg-r2" class="vg-regiao">Bordeaux</p>
+    <p id="vg-r3" class="vg-regiao">Douro</p>
+    <p id="vg-r4" class="vg-regiao">Toscana</p>
+    <div id="vg-a" class="vg-txt">
+      <span class="n">No vinhedo</span>
+      <h2><span>Começa</span> <span>com</span> <span>quem</span> <span>faz</span> <span>o</span> <span>vinho.</span></h2>
+      <p>Produtores de sete países.</p>
+    </div>
+    <div id="vg-b" class="vg-txt">
+      <span class="n">No oceano</span>
+      <h2><span>Atravessa</span> <span>o</span> <span>oceano</span> <span>com</span> <span>a</span> <span>nossa</span> <span>logística.</span></h2>
+    </div>
+    <div id="vg-c" class="vg-txt">
+      <span class="n">No porto</span>
+      <h2><span>Chega</span> <span>ao</span> <span>porto</span> <span>sem</span> <span>intermediários.</span></h2>
+      <p>Santos, Itajaí, São Francisco do Sul e Vitória.</p>
+    </div>
+    <div id="vg-ouro"></div>
+    <div id="vg-fim"></div>
+    <div id="vg-elef"></div>
+  </div>
+  <script>
+    (function () {
+      const W = 1920, H = 1080;
+      const foco = (px, py, s, ax, ay) => ({ x: ax * W - px * s, y: ay * H - py * s, scale: s });
+      const tl = gsap.timeline({ paused: true });
+      const rotas = Array.from(document.querySelectorAll('#vg-rotas path'));
+      rotas.forEach(r => { r.dataset.len = r.getTotalLength(); r.style.strokeDasharray = r.dataset.len; });
+      const trilha = document.getElementById('vg-trilha'), Lt = trilha.getTotalLength();
+      trilha.style.strokeDasharray = Lt; trilha.style.strokeDashoffset = Lt;
+      const navio = document.getElementById('vg-navio');
+      const pts = [0, 0.25, 0.5, 0.75, 1].map(f => trilha.getPointAtLength(f * Lt));
+      const palavras = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.13, stagger: 0.07, ease: 'power2.out' }, t);
+      const entra = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.2, ease: 'power2.out' }, t);
+      const sai = (sel, t) => tl.to(sel, { opacity: 0, filter: 'blur(8px)', duration: 0.18, ease: 'power2.in' }, t);
+
+      // o ouro do elefante cai sobre a carta náutica; os vinhedos acendem
+      tl.fromTo('#vg-cam', foco(1040, 178, 3.6, 0.7, 0.42), { ...foco(1040, 178, 2.8, 0.7, 0.42), duration: 1.0, ease: 'expo.out' }, 0);
+      tl.fromTo('#vg-ouro', { opacity: 1 }, { opacity: 0, duration: 0.4, ease: 'power2.inOut' }, 0);
+      tl.fromTo('#vg-pontos circle', { opacity: 0, attr: { r: 0 } }, { opacity: 1, attr: { r: 2.4 }, duration: 0.25, stagger: 0.05, ease: 'back.out(2)' }, 0.15);
+
+      // montagem: a câmera salta de vinhedo em vinhedo, o nome grande sobre cada um
+      const regioes = [[1040, 130, '#vg-r1'], [994, 172, '#vg-r2'], [924, 208, '#vg-r3'], [1113, 187, '#vg-r4']];
+      regioes.forEach(([px, py, id], i) => {
+        const t = 0.95 + i * 0.6;
+        tl.to('#vg-cam', { ...foco(px, py, 7.5, 0.62, 0.42), duration: 0.42, ease: 'power3.inOut' }, t);
+        tl.fromTo(id, { opacity: 0, filter: 'blur(10px)', scale: 1.08 }, { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.22, ease: 'expo.out' }, t + 0.2);
+        tl.to(id, { opacity: 0, filter: 'blur(10px)', duration: 0.12, ease: 'power2.in' }, t + 0.5);
+      });
+      tl.to('#vg-cam', { ...foco(1040, 178, 2.8, 0.7, 0.42), duration: 0.8, ease: 'power3.inOut' }, 3.4);
+      tl.to('#vg-nomes', { opacity: 1, duration: 0.4, ease: 'power2.out' }, 3.8);
+      entra('#vg-a .n', 3.6); palavras('#vg-a h2 span', 3.7); entra('#vg-a p', 4.3);
+      sai('#vg-a', 6.35); tl.to('#vg-nomes', { opacity: 0, duration: 0.3, ease: 'power2.in' }, 6.35);
+
+      // o Atlântico inteiro; as rotas se desenham até Santos
+      tl.to('#vg-cam', { ...foco(720, 560, 0.98, 0.6, 0.5), duration: 1.0, ease: 'power2.inOut' }, 6.4);
+      tl.fromTo(rotas, { strokeDashoffset: (i, el) => el.dataset.len }, { strokeDashoffset: 0, duration: 1.0, stagger: 0.04, ease: 'power2.inOut' }, 6.6);
+
+      // a câmera segue o navio pela travessia
+      const nav = { p: 0 };
+      const poe = () => { const pt = trilha.getPointAtLength(nav.p * Lt); navio.setAttribute('cx', pt.x); navio.setAttribute('cy', pt.y); trilha.style.strokeDashoffset = Lt * (1 - nav.p); };
+      tl.fromTo('#vg-navio', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'none' }, 7.5);
+      tl.fromTo(nav, { p: 0 }, { p: 1, duration: 4.0, ease: 'none', onUpdate: poe }, 7.6);
+      const zoom = [1.9, 2.05, 2.1, 2.4];
+      for (let k = 1; k <= 4; k++) tl.to('#vg-cam', { ...foco(pts[k].x, pts[k].y, zoom[k - 1], 0.58, 0.48), duration: 1.0, ease: 'none' }, 7.6 + (k - 1));
+      entra('#vg-b .n', 8.0); palavras('#vg-b h2 span', 8.1); sai('#vg-b', 11.3);
+      tl.to('#vg-navio', { opacity: 0, duration: 0.3, ease: 'none' }, 11.6);
+
+      // chegada ao litoral: a câmera desacelera sobre o Brasil e os portos acendem
+      tl.to('#vg-cam', { ...foco(548, 858, 5.2, 0.66, 0.42), duration: 1.2, ease: 'power2.out' }, 11.6);
+      tl.to('#vg-rotas, #vg-pontos, #vg-trilha', { opacity: 0.25, duration: 0.6, ease: 'none' }, 12.0);
+      tl.fromTo('#vg-brasil', { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'none' }, 12.0);
+      tl.to('#vg-mundo', { opacity: 0.35, duration: 0.6, ease: 'none' }, 12.0);
+      tl.fromTo('.vg-p', { opacity: 0 }, { opacity: 1, duration: 0.2, stagger: 0.12, ease: 'power2.out' }, 12.6);
+      entra('#vg-c .n', 12.85); palavras('#vg-c h2 span', 12.95); entra('#vg-c p', 13.6); sai('#vg-c', 16.6);
+      tl.fromTo('#vg-anel', { attr: { r: 2 }, opacity: 0.9 }, { attr: { r: 10 }, opacity: 0, duration: 0.9, ease: 'expo.out' }, 15.4);
+
+      // mergulho no Covabra: o elefante dourado nasce do ponto e toma a tela
+      tl.to('#vg-veu', { opacity: 0, duration: 0.3, ease: 'none' }, 16.4);
+      tl.to('#vg-cam', { ...foco(526, 846, 14, 0.5, 0.5), duration: 1.0, ease: 'power3.in' }, 16.3);
+      tl.fromTo('#vg-fim', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'none' }, 17.2);
+      tl.fromTo('#vg-elef', { opacity: 0, scale: 0.02 }, { opacity: 1, scale: 7, duration: 0.95, ease: 'power3.in' }, 16.95);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines['viagem'] = tl;
+    })();
+  </script>
+</template>

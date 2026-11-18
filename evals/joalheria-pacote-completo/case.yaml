@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: joalheria-pacote-completo
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  A execução segue as fases da skill para uma joalheria fictícia (Ateliê Lume):
+  escreve dossie.md com fatos e uma lista "a confirmar", briefing.md com as
+  suposições, conceito.md com uma história própria (ex.: "da pedra à peça") de
+  4 a 6 etapas e um objeto herói, e um site/index.html com tokens de tema
+  noite e dia, momento principal guiado pela rolagem, portfólio horizontal e
+  contato clicável. Não copia o template fraco (fundo branco, banner, três
+  cards) e não inventa números nem prêmios. O gabarito está em
+  assets/teste-joalheria/resultado-esperado.md da skill.

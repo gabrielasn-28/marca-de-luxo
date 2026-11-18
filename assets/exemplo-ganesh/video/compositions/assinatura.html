@@ -1,0 +1,69 @@
+<template>
+  <style>
+    @font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;font-display:block;src:url('assets/fonts/BodoniModa.woff2') format('woff2')}
+    @font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;font-display:block;src:url('assets/fonts/BodoniModa-Italic.woff2') format('woff2')}
+    @font-face{font-family:'Jost';font-style:normal;font-weight:100 900;font-display:block;src:url('assets/fonts/Jost.woff2') format('woff2')}
+    #root { position: absolute; inset: 0; overflow: hidden; background: #120F0C; }
+    #as-luz { position: absolute; inset: 0; background: radial-gradient(ellipse 34% 50% at 50% 40%, #2E261A 0%, rgba(18,15,12,0) 100%); }
+    #as-marca { position: absolute; left: 0; top: 300px; width: 1920px; height: 200px; display: flex; justify-content: center; align-items: center; gap: 44px; }
+    #as-simbolo { position: relative; width: 164px; height: 200px; flex: 0 0 164px; }
+    #as-simbolo img, #as-reflexo { position: absolute; left: 0; top: 0; width: 164px; height: 200px; }
+    #as-sombra { opacity: 0.1; }
+    #as-reflexo { background: linear-gradient(100deg, rgba(255,246,224,0) 40%, rgba(255,246,224,0.85) 50%, rgba(255,246,224,0) 60%); background-size: 300% 100%; background-position: 100% 0;
+      -webkit-mask: url(assets/img/ganesh-simbolo-branco.svg) center / contain no-repeat; mask: url(assets/img/ganesh-simbolo-branco.svg) center / contain no-repeat; }
+    #as-palavra { position: relative; color: #F1EBE0; width: 600px; }
+    #as-nome, #as-nome-brilho { display: block; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: 92px; line-height: 1; letter-spacing: 0.3em; white-space: nowrap; }
+    #as-nome-brilho { position: absolute; left: 0; top: 0; color: transparent; background: linear-gradient(100deg, rgba(255,246,224,0) 40%, rgba(255,246,224,0.9) 50%, rgba(255,246,224,0) 60%); background-size: 300% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; }
+    #as-nome span { display: inline-block; }
+    #as-vinhos { display: block; margin-top: 16px; font-family: 'Jost', Arial, sans-serif; font-weight: 400; font-size: 28px; letter-spacing: 0.62em; color: #D6C190; }
+    #as-frase { position: absolute; left: 260px; top: 610px; width: 1400px; text-align: center; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-style: italic; font-size: 74px; line-height: 1.1; color: #D6C190; }
+    #as-frase span { display: inline-block; }
+    #as-sub { position: absolute; left: 460px; top: 742px; width: 1000px; text-align: center; font-family: 'Jost', Arial, sans-serif; font-weight: 300; font-size: 32px; color: #CBBFAA; }
+    #as-mar { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+  </style>
+  <div id="root" data-composition-id="assinatura" data-width="1920" data-height="1080">
+    <div id="as-luz"></div>
+    <div id="as-marca">
+      <div id="as-simbolo">
+        <img id="as-sombra" src="assets/img/ganesh-simbolo-branco.svg" alt="">
+        <img id="as-cheio" src="assets/img/ganesh-simbolo-dourado.svg" alt="Símbolo da Ganesh">
+        <div id="as-reflexo"></div>
+      </div>
+      <div id="as-palavra" data-layout-allow-overflow><b id="as-nome"><span>G</span><span>A</span><span>N</span><span>E</span><span>S</span><span>H</span></b><b id="as-nome-brilho" aria-hidden="true" data-layout-allow-overlap>GANESH</b><i id="as-vinhos">VINHOS</i></div>
+    </div>
+    <h2 id="as-frase"><span>O</span> <span>seu</span> <span>vinho</span> <span>já</span> <span>tem</span> <span>uma</span> <span>casa</span> <span>no</span> <span>Brasil.</span></h2>
+    <p id="as-sub">Importação e distribuição de vinhos, São Paulo</p>
+    <svg id="as-mar" viewBox="0 0 1920 1080" aria-hidden="true">
+      <path id="as-onda" d="M-40,-120 L1960,-120 L1960,1200 L-40,1200 Z" fill="#5E1A26"/>
+    </svg>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const onda = document.getElementById('as-onda');
+      const superficie = (y, amp, fase) => { let d = ''; for (let i = 0; i <= 48; i++) { const x = -40 + 2000 * i / 48; d += (i ? 'L' : 'M') + x.toFixed(1) + ',' + (y + Math.sin(i / 48 * Math.PI * 3 + fase) * amp).toFixed(1); } return d; };
+      const mar = { t: 0 };
+      // o vinho escoa de cima para baixo e revela a adega
+      const desce = () => {
+        const p = Math.min(1, mar.t / 1.25), e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        const nivel = -120 + 1290 * e;
+        onda.setAttribute('d', superficie(nivel, 26, 6.4 + mar.t * 4) + 'L1960,1260 L-40,1260 Z');
+      };
+      tl.fromTo(mar, { t: 0 }, { t: 1.4, duration: 1.4, ease: 'none', onUpdate: desce }, 0.1);
+      // o ouro sobe dentro do elefante enquanto o vinho desce
+      tl.fromTo('#as-sombra', { opacity: 0 }, { opacity: 0.1, duration: 0.3, ease: 'none' }, 0.5);
+      tl.fromTo('#as-cheio', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.0, ease: 'power2.inOut' }, 0.55);
+      // as letras se aproximam até o espaçamento da marca
+      tl.fromTo('#as-nome span', { opacity: 0, x: (i) => (i - 2.5) * 70, filter: 'blur(6px)' }, { opacity: 1, x: 0, filter: 'blur(0px)', duration: 1.2, ease: 'expo.out' }, 1.0);
+      tl.fromTo('#as-vinhos', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 1.6);
+      // brilho de folha de ouro atravessa a marca
+      tl.fromTo('#as-reflexo', { backgroundPosition: '100% 0' }, { backgroundPosition: '0% 0', duration: 0.9, ease: 'power2.inOut' }, 2.15);
+      tl.fromTo('#as-nome-brilho', { backgroundPosition: '100% 0' }, { backgroundPosition: '0% 0', duration: 1.0, ease: 'power2.inOut' }, 2.3);
+      // a frase final, palavra por palavra, até o fim
+      tl.fromTo('#as-frase span', { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.13, stagger: 0.07, ease: 'power2.out' }, 2.3);
+      tl.fromTo('#as-sub', { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.2, ease: 'power2.out' }, 3.1);
+      window.__timelines = window.__timelines || {};
+      window.__timelines['assinatura'] = tl;
+    })();
+  </script>
+</template>
