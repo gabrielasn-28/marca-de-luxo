@@ -13,7 +13,7 @@ Registre as respostas no `briefing.md` (modelo em `assets/modelos/briefing.md`).
 ## Rodada 2: o gosto e os fatos (quando fizer diferença)
 - **Referências**: "Tem sites, marcas ou vídeos de que gosta? Mande links ou prints." Avise que vai usar o gosto e manter o nível dos premiados.
 - **Tom**: clássico e silencioso, contemporâneo e ousado, ou caloroso e próximo.
-- **Tema**: noite, dia ou os dois com botão (recomendado: os dois).
+- **Tema**: noite, dia ou os dois com botão (recomendado: os dois). E qual abre por padrão: dia, noite ou o do aparelho.
 - **Idiomas**: português apenas, ou também inglês, espanhol, italiano (pense no público da rodada 1).
 - **Contatos oficiais**: telefone, WhatsApp, e-mail, Instagram, endereço. Nunca invente.
 - **Números grandes**: confirme cada número que vai aparecer em destaque (anos, produtores, rótulos, lojas, clientes).
@@ -48,6 +48,8 @@ Quando a pessoa reclama de algo vago, transforme a reclamação em hipóteses te
 | Fotos do Covabra com clientes | Sem autorização confirmada | Só a foto do estande; consentimento da promotora a confirmar |
 | Exemplo da skill | Ganesh + teste de outro setor | `assets/teste-joalheria/` |
 | Vídeo padrão | Filme da marca 16:9, 30 a 60 s | `video.md` |
+| Celular: produtores | "Ao clicar nos nomes dos vinhos não aparece o vinho" | Toque abre o vinho embaixo do nome |
+| Tema padrão | Dia | Site abre no dia em qualquer aparelho; noite pelo botão |
 
 ## Como tratar referências fracas
 A pessoa pode mandar um template genérico, um site de outro setor ou algo datado.

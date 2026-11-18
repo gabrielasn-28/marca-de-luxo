@@ -6,14 +6,15 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Ganesh Vinhos: a viagem do vinho, do vinhedo do produtor à mesa brasileira.">
 <link rel="icon" type="image/svg+xml" href="img/ganesh-simbolo-dourado.svg">
-<meta name="theme-color" content="#120F0C" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#FAF7F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#FAF7F1" id="cor-barra">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Ganesh Vinhos">
 <meta property="og:title" content="Ganesh Vinhos: do vinhedo à mesa brasileira">
 <meta property="og:description" content="Importação, distribuição e degustação de vinhos de produtores de sete países.">
-<script>/* aplica o tema salvo antes de pintar a página */try{var t=localStorage.getItem("ganesh-tema");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>/* Padrão: tema dia (escolha da cliente), qualquer que seja o tema do aparelho. A noite só entra pelo botão, e a escolha fica salva. */
+(function(){var t="light";try{t=localStorage.getItem("ganesh-tema")||"light"}catch(e){}document.documentElement.setAttribute("data-theme",t);
+if(t==="dark")document.getElementById("cor-barra").setAttribute("content","#120F0C")})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
@@ -502,8 +503,8 @@ if("IntersectionObserver" in window){
 /* Tema dia/noite */
 document.getElementById("tema").addEventListener("click",()=>{
   const r=document.documentElement;
-  const escuro=r.getAttribute("data-theme")?r.getAttribute("data-theme")==="dark":!matchMedia("(prefers-color-scheme: light)").matches;
-  const novo=escuro?"light":"dark";r.setAttribute("data-theme",novo);
+  const novo=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",novo);
+  document.getElementById("cor-barra").setAttribute("content",novo==="dark"?"#120F0C":"#FAF7F1");
   try{localStorage.setItem("ganesh-tema",novo)}catch(e){}
 });
 

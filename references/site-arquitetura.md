@@ -60,6 +60,7 @@ A v1 tinha 10 painéis de 76vw: 9.536 px de rolagem vertical (11 telas) só para
 - Estrutura de tokens: escuro no `:root`; claro em `@media (prefers-color-scheme: light) :root:not([data-theme="dark"])` e em `:root[data-theme="light"]`.
 - Nenhuma cor literal nos componentes: brilho, contorno, sombra e véu também são tokens.
 - Botão alterna `data-theme` e salva no `localStorage` com try/catch. Um script no topo aplica o tema salvo antes de pintar a página.
+- **Tema padrão é decisão da cliente** (pergunte na rodada 2). A Ganesh escolheu o **dia como padrão**: o script do topo aplica `data-theme` = tema salvo ou `"light"`, ignorando o modo escuro do aparelho; o botão só alterna entre `light` e `dark`. Use uma única `<meta name="theme-color" id="cor-barra">` e troque o `content` junto com o tema. Com padrão automático, mantenha os blocos `prefers-color-scheme`.
 - Mapas em WebP transparente com traço dourado funcionam nos dois temas.
 
 ## Sem movimento

@@ -8,7 +8,7 @@
 | Logo | Redesenhar em vetor | 17/11/2026 |
 | Referências | Fontana (palco de luz, botões de contorno dourado), 56° North e BeerStrasse (linha de garrafas), Scotch Me (faixa de parceiros), MODO/Aakriti/Horizonte (nome gigante no fundo, arco como moldura) | 17/11/2026 |
 | Tom | Luxo que valoriza o produto do fornecedor | 17/11/2026 |
-| Tema | Noite (adega) e dia (papel do catálogo), com botão | 17/11/2026 |
+| Tema | Noite (adega) e dia (papel do catálogo), com botão; **dia como padrão** | 18/11/2026 |
 | Idiomas | Site em PT; apresentação em PT, ES e IT | 17/11/2026 |
 | Fotos com pessoas | Clientes do Covabra sem autorização → fora; só o estande | 17/11/2026 |
 | 3D | Sem modelos; garrafa simbólica com o elefante, sem rótulo de terceiro | 17/11/2026 |
