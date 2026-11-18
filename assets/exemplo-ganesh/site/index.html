@@ -78,7 +78,10 @@ p{margin:0}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .tema .sol{display:block}:root:not([data-theme="dark"]) .tema .lua{display:none}}
 @media (max-width:700px){.topo nav a:not(.ct){display:none}}
 
-#cena{position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+/* A cena 3D tem a altura da tela cheia (lvh), que não muda quando a barra do Safari aparece ou some.
+   Com inset:0 a altura mudava durante a rolagem no iPhone e a garrafa escorregava para cima do texto. */
+#cena{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:5;pointer-events:none}
+.sonda-altura{position:fixed;top:0;left:0;width:0;height:100vh;height:100lvh;visibility:hidden;pointer-events:none}
 
 /* Abertura */
 .abertura{position:relative;min-height:min(100svh,980px);display:grid;align-items:center;padding-block:110px 56px;overflow:hidden}
@@ -511,6 +514,8 @@ document.getElementById("tema").addEventListener("click",()=>{
 /* Estado da garrafa 3D; a cena só redesenha quando algo muda */
 /* op = entrada da abertura; fim = saída antes do portfólio. Separados para uma não desfazer a outra */
 window.GARRAFA={x:0,y:0,rz:0,giro:0,s:1,op:1,fim:1,sujo:true};
+/* Altura estável da cena 3D (a do canvas, em lvh); usada pela projeção e pelo GSAP */
+(function(){const s=document.createElement("div");s.className="sonda-altura";document.body.appendChild(s);window.ALTURA3D=()=>s.offsetHeight||innerHeight})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -547,10 +552,12 @@ window.GARRAFA={x:0,y:0,rz:0,giro:0,s:1,op:1,fim:1,sujo:true};
   const yAtual=()=>lenis&&lenis.isScrolling==="smooth"?lenis.targetScroll:scrollY;
 
   /* Converte a posição de um elemento da página em coordenadas da cena 3D (câmera fov 30, z 16) */
-  const visH=2*16*Math.tan(15*Math.PI/180), visW=()=>visH*W()/H();
+  /* fy(f): f é a fração da altura do canvas (A), não da área visível; A não muda com a barra do Safari */
+  const A=()=>window.ALTURA3D();
+  const visH=2*16*Math.tan(15*Math.PI/180), visW=()=>visH*W()/A();
   const fx=f=>(f-.5)*visW(), fy=f=>-(f-.5)*visH;
   const lugar=document.getElementById("lugar-garrafa");
-  const noLugar=()=>{const r=lugar.getBoundingClientRect();return{x:fx((r.left+r.width/2)/W()),y:fy((r.top+scrollY+r.height/2)/H()),s:Math.min(1,(r.height/H())/0.7)}};
+  const noLugar=()=>{const r=lugar.getBoundingClientRect();return{x:fx((r.left+r.width/2)/W()),y:fy((r.top+scrollY+r.height/2)/A()),s:Math.min(1,(r.height/A())/0.7)}};
   let L=noLugar(); B.x=L.x;B.y=L.y;B.s=L.s;
   const reposiciona=()=>{if(scrollY<10){L=noLugar();B.x=L.x;B.y=L.y;B.s=L.s;marca()}};
   addEventListener("resize",reposiciona);
@@ -569,7 +576,7 @@ window.GARRAFA={x:0,y:0,rz:0,giro:0,s:1,op:1,fim:1,sujo:true};
   }
 
   /* Saída da abertura */
-  gsap.fromTo(B,{x:()=>L.x,y:()=>L.y,s:()=>L.s},{x:()=>celular()?fx(.8):fx(.74),y:()=>celular()?fy(.27):.2,s:()=>celular()?.3:.62,ease:"none",immediateRender:false,onUpdate:marca,
+  gsap.fromTo(B,{x:()=>L.x,y:()=>L.y,s:()=>L.s},{x:()=>celular()?fx(.82):fx(.74),y:()=>celular()?fy(.5):.2,s:()=>celular()?.3:.62,ease:"none",immediateRender:false,onUpdate:marca,
     scrollTrigger:{trigger:".abertura",start:"top top",end:"bottom top",scrub:.6,invalidateOnRefresh:true}});
 
   /* Câmera do mapa */
@@ -601,17 +608,19 @@ window.GARRAFA={x:0,y:0,rz:0,giro:0,s:1,op:1,fim:1,sujo:true};
     .to(".camera .mundo",{opacity:.35,duration:.8},3.9)
     .to(".portos",{opacity:1,duration:.6},4.1)
     .to(".origens,#rotas",{opacity:.2,duration:.6},3.6);
-  b({rz:0,y:()=>celular()?fy(.47):.2},3.2,1); /* no celular desce para o oceano e libera o rótulo de Santos */
+  /* No celular a garrafa descansa à direita, no meio da altura: abaixo dos nomes do mapa e acima do texto da etapa
+     (medido em 390×664 e 375×812: nomes até ~35% da altura, texto a partir de ~60%). */
+  b({rz:0,y:()=>celular()?fy(.5):.2},3.2,1);
   tl.to({},{duration:.8});
   troca(2,3,5.6);
   tl.to(cam,{opacity:.1,duration:1},5.6)
     .fromTo(".janela",{autoAlpha:0,scale:.92},{autoAlpha:1,scale:1,duration:1},6);
-  b({x:()=>celular()?fx(.8):fx(.42),y:()=>celular()?fy(.27):.2},5.6,1.2);
+  b({x:()=>celular()?fx(.82):fx(.42),y:()=>celular()?fy(.5):.2},5.6,1.2);
   tl.to({},{duration:.8});
   troca(3,4,7.8);
   tl.to(".janela",{autoAlpha:0,scale:.95,duration:.6},7.8)
     .fromTo(".taca",{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.6},8);
-  b({x:()=>celular()?fx(.58):fx(.68),y:()=>celular()?fy(.2):1.3,rz:1.15,s:()=>celular()?.32:.55},8,1.1);
+  b({x:()=>celular()?fx(.58):fx(.68),y:()=>celular()?fy(.27):1.3,rz:1.15,s:()=>celular()?.32:.55},8,1.1);
   tl.to(vinho,{attr:{y:58,height:60},duration:1.2,ease:"power1.inOut"},8.7).to({},{duration:1});
 
   /* Depois da viagem a garrafa sai de cena */
@@ -700,7 +709,7 @@ const rim=new THREE.DirectionalLight(0xd6c190,2.2);rim.position.set(-6,3,-5);sce
 const rim2=new THREE.DirectionalLight(0xffffff,1.2);rim2.position.set(6,2,-4);scene.add(rim2);
 scene.add(new THREE.AmbientLight(0x3a2e20,.6));
 
-function tamanho(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();B.sujo=true}
+function tamanho(){const a=window.ALTURA3D();renderer.setSize(innerWidth,a,false);camera.aspect=innerWidth/a;camera.updateProjectionMatrix();B.sujo=true}
 tamanho();addEventListener("resize",tamanho);
 let mx=0,my=0,tx=0,ty=0;
 if(matchMedia("(pointer: fine)").matches)addEventListener("pointermove",e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5});

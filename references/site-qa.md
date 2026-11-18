@@ -27,7 +27,7 @@ Não force `progress(1)` em todos os scrub tweens de uma vez: o da abertura rees
 - [ ] Cada etapa do momento principal: texto legível e nada saindo da tela (rótulos, objeto).
 - [ ] Portfólio: o produto cabe inteiro na altura da tela; percurso horizontal ≤ 3,5 telas; contador chega a "10 / 10" com o último cartão inteiro na tela; setas, teclado e gesto lateral andam um cartão.
 - [ ] Modo sem animação: o portfólio rola de lado sozinho (simule com `ScrollTrigger.getAll().forEach(s => s.kill(true))` e remova `.fixa`).
-- [ ] Celular: em cada etapa, o objeto 3D não cobre rótulo nem foto (compare retângulos).
+- [ ] Celular: rode `scripts/checa_objeto_3d.js` em 390×664, 375×667, 375×812 e 430×740; todas as etapas devem dar "livre" (o objeto não encosta em texto, rótulo nem foto).
 - [ ] Celular: todo efeito de hover tem versão de toque (toque no item e confira que algo aparece).
 - [ ] Tema dia e tema noite em todas as seções.
 - [ ] Console sem erros (`read_console_messages` com `onlyErrors`).
